@@ -1,0 +1,263 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="A BustABit-like crash game whre you do not need any real money to play.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>M-Crash • Crash Game</title>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="M-Crash by CalifaxYT">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="M-Crash by CalifaxYT">
+  <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="manifest" href="images/manifest.json">
+  <meta name="theme-color" content="#263238">
+  <link rel="canonical" href="https://www.crash.califax.host">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-orange.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    #bg{
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+   }
+  </style>
+</head>
+<body>
+  <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
+    <main class="mdl-layout__content">
+      <div class="demo-blog__posts mdl-grid">
+        <div class="mdl-card coffee-pic mdl-cell mdl-cell--8-col">
+          <div class="mdl-card__media mdl-color-text--grey-50">
+            <h3><a id="crashedat">Crashed @ x0.0</a></h3>         
+          </div>
+          <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">            
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="betcoins">
+              <label class="mdl-textfield__label" id="betcoins">M-Coins to Bet</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cashout">
+              <label class="mdl-textfield__label" id="crashpredict">Cashout @ x???</label>
+            </div>
+            <div>
+                <button style="margin-left: 30px" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-button--accent" id="begingame">Bet</button>
+            </div>
+          </div>
+        </div>
+        <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
+          <button style="margin-right:64px; margin-top:8px; background-color: rgba(158,158,158,1);" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" mdl-js-ripple-effect id="resetbalance">
+            <i class="material-icons">refresh</i>
+          </button>
+          <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent" id="addbalance">
+            <i class="material-icons mdl-color-text--white" role="presentation">add</i>
+            <span class="visuallyhidden">add</span>
+          </button>
+          <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600" id="balancecard">
+            <img src="images/logo.png">0,00 ℳ
+          </div>
+          <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
+            <div>
+              <strong>M-Coin Balance</strong>
+            </div>
+          </div>
+        </div>
+        <nav class="demo-nav mdl-cell mdl-cell--12-col">
+          <div class="section-spacer"></div>
+          <a class="demo-nav__button" title="show more">
+            More Games
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="moregames">
+              <i class="material-icons" role="presentation" id="moregames">arrow_forward</i>
+            </button>
+          </a>
+        </nav>
+      </div>
+    </main>
+    <div class="mdl-layout__obfuscator"></div>
+  </div>
+  <dialog class="mdl-dialog" id="balanceadderror">
+    <h4 class="mdl-dialog__title">Add M-Coin Balance</h4>
+    <div class="mdl-dialog__content">
+      <p>
+        You already have the maximum base M-Coin balance of 1000,00 ℳ
+      </p>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button close">OK</button>
+    </div>
+  </dialog>
+  <dialog class="mdl-dialog" id="balancesubtracterror">
+    <h4 class="mdl-dialog__title">Bet M-Coins</h4>
+    <div class="mdl-dialog__content">
+      <p>
+        You do not have this much M-Coins to bet.
+      </p>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button close">OK</button>
+    </div>
+  </dialog>
+  <dialog class="mdl-dialog" id="inputerror">
+    <h4 class="mdl-dialog__title">Begin Game</h4>
+    <div class="mdl-dialog__content">
+      <p>
+        You must give the amount of M-Coins to spend and the cashout multiplier.
+      </p>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button close">OK</button>
+    </div>
+  </dialog>  
+  <dialog class="mdl-dialog" id="mgdlg">
+    <h4 class="mdl-dialog__title">More Games</h4>
+    <div class="mdl-dialog__content">
+      <p>
+        Once we develop more games, you will be able to see them here.
+      </p>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button close">OK</button>
+    </div>
+  </dialog>    
+  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/format-hex.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/hmac-sha256.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.js"></script>
+</body>
+<script>
+  Array.prototype.forEach.call(document.querySelectorAll('.mdl-card__media'), function (el) {
+    var link = el.querySelector('a');
+    if (!link) {
+      return;
+    }
+    var target = link.getAttribute('href');
+    if (!target) {
+      return;
+    }
+    el.addEventListener('click', function () {
+      location.href = target;
+    });
+  });
+</script>
+<script>
+  $(document).ready(function () {
+    if (!Cookies.get('userbalance')) {
+      Cookies.set('userbalance', 1000);
+      $("#balancecard").html('<img src="images/logo.png">' + Cookies.get('userbalance') + ' ℳ');
+    } else {
+      let userbalance = Cookies.get('userbalance');
+      $("#balancecard").html('<img src="images/logo.png">' + Cookies.get('userbalance') + ' ℳ');
+    }        
+  });
+
+  $("#addbalance").click(function () {
+    if (parseFloat(Cookies.get('userbalance')) < 1000) {
+      Cookies.set('userbalance', parseFloat(Cookies.get('userbalance')) + (1000 - parseFloat(Cookies.get(
+        'userbalance'))));
+      $("#balancecard").html('<img src="images/logo.png">' + Cookies.get('userbalance') + ' ℳ');
+    } else {
+      var dialog = document.querySelector('#balanceadderror');
+      if (!dialog.showModal) {
+        dialogPolyfill.registerDialog(dialog);
+      }
+      dialog.showModal();
+      dialog.querySelector('.close').addEventListener('click', function () {
+        dialog.close();
+      });
+    }
+  });
+
+    $("#moregames").click(function () {
+      var dialog = document.querySelector('#mgdlg');
+      if (!dialog.showModal) {
+        dialogPolyfill.registerDialog(dialog);
+      }
+      dialog.showModal();
+      dialog.querySelector('.close').addEventListener('click', function () {
+        dialog.close();
+      });
+  });  
+
+  $("#resetbalance").click(function () {
+      Cookies.set('userbalance', 1000);
+      $("#balancecard").html('<img src="images/logo.png">' + Cookies.get('userbalance') + ' ℳ');
+      $("#crashedat").html('Crashed @ x0.0');
+  });
+
+  $("#begingame").click(function () {
+      if(parseFloat($("#cashout").val()) && parseFloat($("#betcoins").val())){
+       if (parseFloat($("#betcoins").val()) <= parseFloat(Cookies.get('userbalance'), 10)) {
+
+        Cookies.set('userbalance', parseFloat(Cookies.get('userbalance'), 10) - parseFloat($("#betcoins").val()));
+        $("#balancecard").html('<img src="images/logo.png">' + Cookies.get('userbalance') + ' ℳ');
+        $("#crashedat").html('Game will begin in a moment...');
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+         let crashedat = gameResult(CryptoJS.enc.Hex.parse(String(JSON.parse(this.responseText)[0])), '0000000000000000004d6ec16dafe9d8370958664c1dc422f452892264c59526');
+         $("#crashedat").html('Crashed @ x' + crashedat);                            
+         if(parseFloat($("#cashout").val()) <= crashedat && parseFloat($("#cashout").val()) != 1){
+          Cookies.set('userbalance',(parseFloat(Cookies.get('userbalance')) + (parseFloat($("#betcoins").val()) *  ($("#cashout").val()))).toFixed(2));
+          $("#balancecard").html('<img src="images/logo.png">' + Cookies.get('userbalance') + ' ℳ');
+         }
+       }
+     }
+      xhr.open("GET", "https://cors-anywhere.herokuapp.com/http://www.randomnumberapi.com/api/v1.0/randomstring?min=64&max=64");
+      xhr.setRequestHeader("Accept", 'application/json');
+      xhr.send();  
+    } else {
+      var dialog = document.querySelector('#balancesubtracterror');
+      if (!dialog.showModal) {
+        dialogPolyfill.registerDialog(dialog);
+      }
+      dialog.showModal();
+      dialog.querySelector('.close').addEventListener('click', function () {
+        dialog.close();
+      });
+    } 
+      }else{
+      var dialog = document.querySelector('#inputerror');
+      if (!dialog.showModal) {
+        dialogPolyfill.registerDialog(dialog);
+      }
+      dialog.showModal();
+      dialog.querySelector('.close').addEventListener('click', function () {
+        dialog.close();
+      });
+      }
+  });
+
+  const gameResult = (seed, salt) => {
+  const nBits = 52;
+  const hmac = CryptoJS.HmacSHA256(seed, salt);
+  seed = hmac.toString(CryptoJS.enc.Hex);
+  seed = seed.slice(0, nBits / 4);
+  const r = parseInt(seed, 16);
+  let X = r / Math.pow(2, nBits);
+  X = 99 / (1 - X);
+  const result = Math.floor(X);
+  return Math.max(1, result / 100);
+};
+</script>
+
+</html>
