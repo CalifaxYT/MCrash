@@ -28,6 +28,9 @@ const ui = {
     refreshgame: function(UIText) {
         $("#crashedat").html(UIText);
     },
+    snackbar: function(UIElement,UIText) {
+        document.querySelector(UIElement).MaterialSnackbar.showSnackbar({message: UIText});
+    },    
     dialog: function(UIElement) {
         var dialog = document.querySelector(UIElement);
         if (!dialog.showModal) {

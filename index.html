@@ -137,6 +137,14 @@
       <button type="button" class="mdl-button close">OK</button>
     </div>
   </dialog>
+  <div id="creditsadded" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+  </div>
+  <div id="progressreset" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+  </div>  
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
@@ -157,6 +165,7 @@
     if (parseFloat(Cookies.get('userbalance')) < 1000) {
       Cookies.set('userbalance', 1000);
       ui.refreshbalance();
+      ui.snackbar("#creditsadded","Your credits have been given back.");
     } else {
       ui.dialog('#balanceadderror')
     }
@@ -170,6 +179,7 @@
     Cookies.set('userbalance', 1000);
     ui.refreshbalance();
     ui.refreshgame('Crashed @ x0.0');
+    ui.snackbar("#progressreset","Progress was reset succesfully.");
   });
 
   $("#begingame").click(function () {
