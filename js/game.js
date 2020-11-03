@@ -11,26 +11,21 @@ const game = {
         Cookies.set('userbalance', parseFloat(Cookies.get('userbalance')) - parseFloat($("#betcoins").val()),{secure: true,domain: 'califax.host',path: '/'});        
         ui.refreshgame('Game will begin in a moment...');
         ui.refreshbalance();
-        game.xhr();
+        let multiplier = game.crypto(CryptoJS.enc.Hex.parse(String(game.rng())), '0000000000000000004d6ec16dafe9d8370958664c1dc422f452892264c59526');
+        ui.refreshgame('Crashed @ x' + multiplier);
+        if(parseFloat($("#cashout").val()) <= multiplier){
+         Cookies.set('userbalance',(parseFloat(Cookies.get('userbalance')) + (parseFloat($("#betcoins").val()) *  ($("#cashout").val()))).toFixed(2),{secure: true,domain: 'califax.host',path: '/'});
+         ui.refreshbalance();
+        }        
     },
-    xhr: function() {
-        let xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function(){
-            if (this.readyState === 4 && this.status === 200){
-                const generateRandomString = (length=6)=>Math.random().toString(20).substr(2, length)
-                console.log(generateRandomString);
-                let multiplier = game.crypto(CryptoJS.enc.Hex.parse(String(JSON.parse(this.responseText)[0])), '0000000000000000004d6ec16dafe9d8370958664c1dc422f452892264c59526');
-                ui.refreshgame('Crashed @ x' + multiplier);
-                if(parseFloat($("#cashout").val()) <= multiplier){
-                    Cookies.set('userbalance',(parseFloat(Cookies.get('userbalance')) + (parseFloat($("#betcoins").val()) *  ($("#cashout").val()))).toFixed(2),{secure: true,domain: 'califax.host',path: '/'});
-                    ui.refreshbalance();
-                }
-            }            
+    rng: function() {
+        var rngstring = ""
+        var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for (var i = 0; i < 64; i++){
+            rngstring += chars.charAt(Math.floor(Math.random() * chars.length));
         }
-        xhr.open("GET", "https://helloacm.com/api/random/?n=64");
-        xhr.setRequestHeader("Accept", 'application/json');
-        xhr.send();
-    },
+        return rngstring;
+    },   
     crypto: function(GameSeed, GameSalt) {
         const HMAC = CryptoJS.HmacSHA256(GameSeed, GameSalt);
         GameSeed = HMAC.toString(CryptoJS.enc.Hex).slice(0, 52 / 4);
