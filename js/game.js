@@ -17,6 +17,8 @@ const game = {
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function(){
             if (this.readyState === 4 && this.status === 200){
+                const generateRandomString = (length=6)=>Math.random().toString(20).substr(2, length)
+                console.log(generateRandomString);
                 let multiplier = game.crypto(CryptoJS.enc.Hex.parse(String(JSON.parse(this.responseText)[0])), '0000000000000000004d6ec16dafe9d8370958664c1dc422f452892264c59526');
                 ui.refreshgame('Crashed @ x' + multiplier);
                 if(parseFloat($("#cashout").val()) <= multiplier){
