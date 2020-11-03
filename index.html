@@ -63,14 +63,20 @@
         <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
           <button style="margin-right:64px; margin-top:8px; background-color: rgba(158,158,158,1);"
             class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" mdl-js-ripple-effect
-            id="resetbalance">
+            id="resetprogress">
             <i class="material-icons">refresh</i>
           </button>
+          <div class="mdl-tooltip" data-mdl-for="resetprogress">
+           Reset Progress
+          </div>
           <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent"
             id="addbalance">
             <i class="material-icons mdl-color-text--white" role="presentation">add</i>
             <span class="visuallyhidden">add</span>
           </button>
+          <div class="mdl-tooltip" data-mdl-for="addbalance">
+           Reset Balance
+          </div>          
           <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600" id="balancecard">
             <img src="images/logo.png">0,00 ℳ
           </div>
@@ -175,7 +181,7 @@
     ui.dialog('#mgdlg')
   });
 
-  $("#resetbalance").click(function () {
+  $("#resetprogress").click(function () {
     Cookies.set('userbalance', 1000);
     ui.refreshbalance();
     ui.refreshgame('Crashed @ x0.0');
