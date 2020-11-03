@@ -27,7 +27,7 @@ const game = {
                 }
             }            
         }
-        xhr.open("GET", "https://cors-anywhere.herokuapp.com/http://www.randomnumberapi.com/api/v1.0/randomstring?min=64&max=64");
+        xhr.open("GET", "https://helloacm.com/api/random/?n=64");
         xhr.setRequestHeader("Accept", 'application/json');
         xhr.send();
     },
