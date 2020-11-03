@@ -1,7 +1,7 @@
 const game = {
     prepare: function() {
         if (!Cookies.get('userbalance')){
-            Cookies.set('userbalance', 1000);
+            Cookies.set('userbalance', 1000,{secure: true,domain:'califax.host',path: '/'});
             ui.refreshbalance();
         }else{
             ui.refreshbalance();
@@ -20,7 +20,7 @@ const game = {
                 let multiplier = game.crypto(CryptoJS.enc.Hex.parse(String(JSON.parse(this.responseText)[0])), '0000000000000000004d6ec16dafe9d8370958664c1dc422f452892264c59526');
                 ui.refreshgame('Crashed @ x' + multiplier);
                 if(parseFloat($("#cashout").val()) <= multiplier){
-                    Cookies.set('userbalance',(parseFloat(Cookies.get('userbalance')) + (parseFloat($("#betcoins").val()) *  ($("#cashout").val()))).toFixed(2));
+                    Cookies.set('userbalance',(parseFloat(Cookies.get('userbalance')) + (parseFloat($("#betcoins").val()) *  ($("#cashout").val()))).toFixed(2),{secure: true,domain: 'califax.host',path: '/'});
                     ui.refreshbalance();
                 }
             }            

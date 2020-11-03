@@ -163,13 +163,13 @@
 </body>
 <script>
   $(document).ready(function () {
-    ui.prepare();
     game.prepare();
+    ui.prepare();    
   });
 
   $("#addbalance").click(function () {
     if (parseFloat(Cookies.get('userbalance')) < 1000) {
-      Cookies.set('userbalance', 1000);
+      Cookies.set('userbalance', 1000,{secure: true,domain:'califax.host',path: '/'});
       ui.refreshbalance();
       ui.snackbar("#creditsadded","Your credits have been given back.");
     } else {
@@ -182,7 +182,7 @@
   });
 
   $("#resetprogress").click(function () {
-    Cookies.set('userbalance', 1000);
+    Cookies.set('userbalance', 1000,{secure: true,domain:'califax.host',path: '/'});
     ui.refreshbalance();
     ui.refreshgame('Crashed @ x0.0');
     ui.snackbar("#progressreset","Progress was reset succesfully.");
