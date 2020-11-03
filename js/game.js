@@ -8,7 +8,7 @@ const game = {
         }
     },    
     run: function() {
-        Cookies.set('userbalance', parseFloat(Cookies.get('userbalance')) - parseFloat($("#betcoins").val()));        
+        Cookies.set('userbalance', parseFloat(Cookies.get('userbalance')) - parseFloat($("#betcoins").val()),{secure: true,domain: 'califax.host',path: '/'});        
         ui.refreshgame('Game will begin in a moment...');
         ui.refreshbalance();
         game.xhr();
